@@ -402,7 +402,20 @@ font-size: 60px;
 }
 
 
+.autor{
+  margin-top: 50px;
+  position: absolute;
+  color: #00CF5F;
+  
+  width: 100%;
+  text-align: center;
 
+  padding: 30px;
+  a{
+    text-decoration: none;
+    font-weight: 800;
+  }
+}
 @media screen and (max-with:600px){
   .youtube-trailer{
     width: 300px;
