@@ -1,13 +1,23 @@
 const peliId = window.location.search.replace("?", "");
 window.addEventListener("load", async () => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${peliId}/videos?api_key=249f222afb1002186f4d88b2b5418b55`
+    `https://api.themoviedb.org/3/movie/${peliId}/videos?api_key=249f222afb1002186f4d88b2b5418b55&language=es-ES`
   );
   const { results } = await response.json();
   let filtrado = results.find((e) => e.type === "Trailer");
-  const key = filtrado?.key;
+  let key = filtrado?.key;
 
-  creaTrailer(key);
+  if (!key) {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${peliId}/videos?api_key=249f222afb1002186f4d88b2b5418b55`
+    );
+    const { results } = await response.json();
+    let filtrado = results.find((e) => e.type === "Trailer");
+    let key = filtrado?.key;
+    creaTrailer(key);
+  } else {
+    creaTrailer(key);
+  }
 });
 
 //crea y muestra el trailer
